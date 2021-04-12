@@ -20,5 +20,18 @@ $router->get('/', function () use ($router) {
 // API route group
 $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('register', 'AuthController@register');
-    $router->post('login', 'AuthController@login');
+    $router->post('token', 'AuthController@token');
+});
+
+$router->group(['middleware' => 'auth'], function () use ($router) {
+
+    $router->group(['prefix' => 'user'], function () use ($router) {
+        $router->get('profile', 'UserController@profile');
+        $router->get('find', 'UserController@find');
+    });
+
+    $router->group(['prefix' => 'transaction'], function () use ($router) {
+        $router->post('/', 'TransactionController@create');
+    });
+
 });
