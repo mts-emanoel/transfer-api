@@ -21,6 +21,7 @@ docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env up -d ngi
 
 docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env exec workspace bash
 
+composer install
 php artisan jwt:secret -f && php artisan migrate
 
 ~~~
