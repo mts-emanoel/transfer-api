@@ -16,7 +16,7 @@ git clone https://github.com/mts-emanoel/transfer-api.git && cd transfer-api
 docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env up -d nginx mysql phpmyadmin workspace
 ~~~
 
-3. Entre no bash em _workspace_ e posteriormente execute os respectivos comandos para migração e geração do token privado jwt
+3. Entre no bash em _workspace_ e posteriormente execute os respectivos comandos para instalação do projeto, migração e geração do token privado jwt
 ~~~bash
 
 docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env exec workspace bash
@@ -35,7 +35,7 @@ docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env down
 ## [Documentação](https://documenter.getpostman.com/view/13030272/TzJoDzxX#9da8b6bd-8ed4-4584-8060-a7ad9286cb9a)
 
 Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
- - Leia ou baixe a documentação para execução local em: 
+ - Leia ou baixe a documentação, acesse: 
    - [https://documenter.getpostman.com/view/13030272/TzJoDzxX#9da8b6bd-8ed4-4584-8060-a7ad9286cb9a](https://documenter.getpostman.com/view/13030272/TzJoDzxX#9da8b6bd-8ed4-4584-8060-a7ad9286cb9a)
 
 ## Serviços Padrão
@@ -46,9 +46,10 @@ Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
 ### PhpMyAdmin
 - Porta: 8081
 - URL: https://localhost:8081/
-- Server: mysql
-- User: root
-- Password: root
+- Credenciais de acesso:
+ - Server: mysql
+ - User: root
+ - Password: root
 
 ### NGINX
 - HTTP: porta 8000
