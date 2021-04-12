@@ -47,9 +47,9 @@ Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
 - Porta: 8081
 - URL: https://localhost:8081/
 - Credenciais de acesso:
- - Server: mysql
- - User: root
- - Password: root
+  - Server: mysql
+  - User: root
+  - Password: root
 
 ### NGINX
 - HTTP: porta 8000
