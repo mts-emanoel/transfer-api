@@ -125,4 +125,29 @@ class TransactionController extends Controller
         }
     }
 
+    public function sent(Request $request)
+    {
+        $request->merge([
+            'per_page' => $request->get('per_page') ?: 100
+        ]);
+
+        $this->validate($request, [
+            'per_page' => 'integer|min:1|max:100'
+        ]);
+
+        return Transaction::where('user_origin_id', '=', 1)->paginate($request->input('per_page'));
+    }
+
+    public function received(Request $request)
+    {
+        $request->merge([
+            'per_page' => $request->get('per_page') ?: 100
+        ]);
+
+        $this->validate($request, [
+            'per_page' => 'integer|min:1|max:100'
+        ]);
+
+        return Transaction::where('user_receiver_id', '=', Auth::user()->id)->paginate($request->input('per_page'));
+    }
 }

@@ -32,6 +32,8 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
 
     $router->group(['prefix' => 'transaction'], function () use ($router) {
         $router->post('/', 'TransactionController@create');
+        $router->get('sent', 'TransactionController@sent');
+        $router->get('received', 'TransactionController@received');
     });
 
 });
