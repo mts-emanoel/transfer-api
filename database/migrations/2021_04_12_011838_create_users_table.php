@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
                 ->unique()
                 ->notNullable();
             $table->string('password');
-            $table->string('document',14)
+            $table->string('document', 14)
                 ->unique()
                 ->notNullable();
             $table->enum('category',

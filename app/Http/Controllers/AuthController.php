@@ -24,7 +24,7 @@ class AuthController extends Controller
     /**
      * Store a new user.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request)
@@ -66,11 +66,11 @@ class AuthController extends Controller
                 ]
             );
 
-            if($user && $wallet){
+            if ($user && $wallet) {
                 DB::commit();
                 //return successful
                 return response()->json($user, 201);
-            }else{
+            } else {
                 throw new \Exception('User Registration Failed!');
             }
 
@@ -88,7 +88,7 @@ class AuthController extends Controller
     /**
      * Get a JWT via given credentials.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function token(Request $request)
@@ -101,7 +101,7 @@ class AuthController extends Controller
 
         $credentials = $request->only(['email', 'password']);
 
-        if (! $token = Auth::attempt($credentials)) {
+        if (!$token = Auth::attempt($credentials)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 

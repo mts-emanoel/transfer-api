@@ -55,7 +55,7 @@ class UserController extends Controller
         try {
             $user = User::where($request->field, '=', $request->value)->first();
 
-            if(empty($user)) throw new \Exception();
+            if (empty($user)) throw new \Exception();
 
             return response()->json($user, 200);
         } catch (\Exception $e) {

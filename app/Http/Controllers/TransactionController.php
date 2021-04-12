@@ -28,7 +28,8 @@ class TransactionController extends Controller
     /**
      * @param Request $request
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         // validation: categories allowed
         $categories_allowed = Rule::in(['consumer']);
@@ -50,29 +51,29 @@ class TransactionController extends Controller
         ]);
 
         // validation: not allowed to transfer to the same user
-        if(Auth::user()->id == $request->input('user_receiver_id')){
+        if (Auth::user()->id == $request->input('user_receiver_id')) {
             return response()->json(
                 ['message' => 'Not allowed to transfer to the same user'],
                 406
             );
         }
 
-        try{
+        try {
             // validation: AuthorizerAPI
             $user_origin = User::find(Auth::user()->id);
             $authorizerApi = new AuthorizerAPI();
-            if($authorizerApi->consult($user_origin)->getStatusCode() != 200){
+            if ($authorizerApi->consult($user_origin)->getStatusCode() != 200) {
                 throw new \Exception('not allowed by the authorizer service');
             }
 
             // start transaction
             DB::beginTransaction();
 
-            $wallet_user_origin = Wallet::where('user_id','=',Auth::user()->id)->first();
-            $wallet_user_receiver =  Wallet::where('user_id','=',$request->input('user_receiver_id'))->first();
+            $wallet_user_origin = Wallet::where('user_id', '=', Auth::user()->id)->first();
+            $wallet_user_receiver = Wallet::where('user_id', '=', $request->input('user_receiver_id'))->first();
             $amount = intval($request->input('amount'));
 
-            if($wallet_user_origin->amount < $amount){
+            if ($wallet_user_origin->amount < $amount) {
                 throw new \Exception('insufficient funds');
             }
 
@@ -90,11 +91,11 @@ class TransactionController extends Controller
             $wallet_user_receiver->amount = intval($wallet_user_receiver->amount) + intval($amount);
 
             // update wallets
-            if($wallet_user_origin->save() && $wallet_user_receiver->save()){
+            if ($wallet_user_origin->save() && $wallet_user_receiver->save()) {
                 $transaction->status = 'paid';
 
                 // update transaction to 'paid'
-                if($transaction->save()){
+                if ($transaction->save()) {
 
                     // commit transaction
                     DB::commit();
@@ -107,12 +108,12 @@ class TransactionController extends Controller
 
                     // success
                     return response()->json($transaction, 201);
-                }else{
+                } else {
                     throw new \Exception();
                 }
             }
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             // rollback transaction
             DB::rollBack();
 

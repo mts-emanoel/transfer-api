@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Events\Event;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
@@ -10,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 class TransactionNotificationEvent extends Event
 {
     use SerializesModels;
+
     /**
      *
      * @var User
