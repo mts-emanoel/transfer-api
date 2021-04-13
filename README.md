@@ -36,7 +36,7 @@ docker-compose down
 
 Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
  - Leia ou baixe a documentação, acesse: 
-   - [https://documenter.getpostman.com/view/13030272/TzJoDzxX#9da8b6bd-8ed4-4584-8060-a7ad9286cb9a](https://documenter.getpostman.com/view/13030272/TzJoDzxX#9da8b6bd-8ed4-4584-8060-a7ad9286cb9a)
+   - [https://documenter.getpostman.com/view/13030272/TzJoDzxX](https://documenter.getpostman.com/view/13030272/TzJoDzxX)
 
 ## Serviços Padrão
 
