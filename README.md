@@ -21,12 +21,12 @@ docker-compose up -d nginx mysql phpmyadmin workspace
 docker-compose exec workspace bash
 ~~~
 
-5. Instalação dos pacotes via composer e migração do banco de dados; Por fim a saída com _exit_
+4. Faça a instalação dos pacotes via composer e migração do banco de dados; Por fim a saída com _exit_
 ~~~bash
 composer install && php artisan migrate && exit
 ~~~
 
-4. Quando precisar parar os conteiners utilize o comando abaixo 
+5. Quando precisar parar os conteiners utilize o comando abaixo 
 ~~~bash
 docker-compose down
 ~~~
