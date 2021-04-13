@@ -16,7 +16,7 @@ git clone https://github.com/mts-emanoel/transfer-api.git && cd transfer-api && 
 docker-compose up -d nginx mysql phpmyadmin workspace
 ~~~
 
-3. Entre no bash em _workspace_ e posteriormente execute os respectivos comandos para instalação do projeto, migração e geração do token privado jwt
+3. Entre no bash em _workspace_
 ~~~bash
 docker-compose exec workspace bash
 ~~~
