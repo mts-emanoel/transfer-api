@@ -6,29 +6,29 @@
 
 O Projeto possui suporte para uso do docker. Para isso é necessário que você tenha instalado o [Docker](https://docs.docker.com/engine/install/) e [Docker-Compose](https://docs.docker.com/compose/install/) na sua maquina.
 
-1. Clonar o projeto e entar na pasta para executar os comandos necessários
+1. Clonar o projeto e entar na pasta  _transfer-api/docker/_ para executar os comandos necessários
 ~~~bash
-git clone https://github.com/mts-emanoel/transfer-api.git && cd transfer-api
+git clone https://github.com/mts-emanoel/transfer-api.git && cd transfer-api && cd docker
 ~~~
 
-2. Dentro do diretório raiz os arquivos .env já estão com os valores padrão. Basta iniciar os conteiners com o docker-compose
+2. Dentro do diretório raiz os arquivos .env já estão com os valores padrão. Basta entrar em _transfer-api/docker/_ e iniciar os conteiners com o docker-compose
 ~~~bash
-docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env up -d nginx mysql phpmyadmin workspace
+docker-compose up -d nginx mysql phpmyadmin workspace
 ~~~
 
 3. Entre no bash em _workspace_ e posteriormente execute os respectivos comandos para instalação do projeto, migração e geração do token privado jwt
 ~~~bash
-
-docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env exec workspace bash
-
-composer install
-php artisan jwt:secret -f && php artisan migrate
-
+docker-compose exec workspace bash
 ~~~
 
-4. Quando precisar parar os conteiners utilize o comando:
+5. Instalação dos pacotes via composer e migração do banco de dados; Por fim a saída com _exit_
 ~~~bash
-docker-compose -f ./docker/docker-compose.yml --env-file ./docker/.env down
+composer install && php artisan migrate && exit
+~~~
+
+4. Quando precisar parar os conteiners utilize o comando abaixo 
+~~~bash
+docker-compose down
 ~~~
 
 
@@ -48,8 +48,8 @@ Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
 - URL: https://localhost:8081/
 - Credenciais de acesso:
   - Server: mysql
-  - User: root
-  - Password: root
+  - User: default
+  - Password: secret
 
 ### NGINX
 - HTTP: porta 8000
@@ -58,6 +58,5 @@ Toda documentação foi gerada atravez do [Postman](https://www.postman.com/).
 - Host: mysql
 - Porta: 3309
 - Banco de Dados: default
-- Usuário: root
-- Senha: root
-
+- Usuário: default
+- Senha: secret
